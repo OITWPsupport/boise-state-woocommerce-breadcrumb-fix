@@ -4,7 +4,7 @@
  * Plugin URI: https://webguide.boisestate.edu
  * Description: A plugin designed to change the breadcrumb text for woocommerce shop. 
  * Also adds accessibility fix for buttons.
- * Version: 0.01
+ * Version: 0.0.2
  * Author: Kira Davis
  */
  
