@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: Boise State Breadcrumbs
+ * Plugin Name: Boise State Woocommerce Breadcrumb Fix
  * Plugin URI: https://webguide.boisestate.edu
  * Description: A plugin designed to change the breadcrumb text for woocommerce shop. 
  * Also adds accessibility fix for buttons.
