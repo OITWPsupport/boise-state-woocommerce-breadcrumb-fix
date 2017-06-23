@@ -1,10 +1,10 @@
 <?php
 /*
  * Plugin Name: Boise State Woocommerce Breadcrumb Fix
- * Plugin URI: https://webguide.boisestate.edu
- * Description: A plugin designed to change the breadcrumb text for woocommerce shop. 
+ * Plugin URI: https://github.com/OITWPsupport/boise-state-woocommerce-breadcrumb-fix/releases/latest
+ * Description: Allows you to change the text of Woocommerce's root breadcrumb item. 
  * Also adds accessibility fix for buttons.
- * Version: 0.0.2
+ * Version: 0.0.3
  * Author: Kira Davis
  */
  
