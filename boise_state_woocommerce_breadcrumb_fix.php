@@ -1,10 +1,10 @@
 <?php
 /*
- * Plugin Name: Boise State Woocommerce Breadcrumb Fix
- * Plugin URI: https://github.com/OITWPsupport/boise-state-woocommerce-breadcrumb-fix/releases/latest
- * Description: Allows you to change the text of Woocommerce's root breadcrumb item. 
+ * Plugin Name: Boise State Breadcrumbs
+ * Plugin URI: https://webguide.boisestate.edu
+ * Description: A plugin designed to change the breadcrumb text for woocommerce shop. 
  * Also adds accessibility fix for buttons.
- * Version: 0.0.3
+ * Version: 0.02
  * Author: Kira Davis
  */
  
@@ -13,12 +13,37 @@ defined( 'ABSPATH' ) or die( 'No hackers' );
 //-----------------------------------------------------
 // Load Script
 //-----------------------------------------------------
-/* Uses JQuery to add titles to buttons. */
-function load_scripts() {
+function load_scripts() {			// Uses JQuery to add titles to buttons.
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'script', plugin_dir_url(__FILE__) . '/script.js', array( 'jquery' ), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'load_scripts' ); 
+
+//-----------------------------------------------------
+// Change search text
+//-----------------------------------------------------
+add_filter( 'get_product_search_form' , 'woo_custom_product_searchform' );
+
+/**
+ * woo_custom_product_searchform
+ *
+ * @access      public
+ * @since       1.0 
+ * @return      void
+*/
+function woo_custom_product_searchform( $form ) {
+	
+	$form = '<form role="search" method="get" class="woocommerce-product-search" id="searchform" action="' . esc_url( home_url( '/'  ) ) . '">
+		<div>
+			<label class="screen-reader-text" for="s">' . __( 'Search for:', 'woocommerce' ) . '</label>
+			<input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="' . get_option('search_text') . '" />
+			<input type="submit" id="searchsubmit" value="'. esc_attr__( 'Search', 'woocommerce' ) .'" />
+			<input type="hidden" name="post_type" value="product" />
+		</div>
+	</form>';
+	
+	return $form;
+}
 
 //-----------------------------------------------------
 // Replace Breadcrumb Text
@@ -52,11 +77,16 @@ function bsu_breadcrumb_admin_settings() {
 function breadcrumb_text_field() { ?> 
 	<input type="text" name="breadcrumb_text" id="breadcrumb_text" value="<?php echo get_option('breadcrumb_text'); ?>" /> 
 <?php }
+function search_text_field() { ?> 
+	<input type="text" name="search_text" id="search_text" value="<?php echo get_option('search_text'); ?>" /> 
+<?php }
 
 function bsu_breadcrumb_display_theme_panel_fields() {
 	add_settings_section("breadcrumb-section", "Breadcrumb Settings", null, "breadcrumb-options");
 	add_settings_field("breadcrumb_text", "Breadcrumb Text", "breadcrumb_text_field", "breadcrumb-options", "breadcrumb-section");
 	register_setting("breadcrumb-section", "breadcrumb_text");	
+	add_settings_field("search_text", "Search Placeholder Text", "search_text_field", "breadcrumb-options", "breadcrumb-section");
+	register_setting("breadcrumb-section", "search_text");	
 }
 
 add_action("admin_init", "bsu_breadcrumb_display_theme_panel_fields");
