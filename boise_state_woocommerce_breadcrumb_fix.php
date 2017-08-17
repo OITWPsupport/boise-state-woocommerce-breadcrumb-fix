@@ -24,13 +24,6 @@ add_action( 'wp_enqueue_scripts', 'load_scripts' );
 //-----------------------------------------------------
 add_filter( 'get_product_search_form' , 'woo_custom_product_searchform' );
 
-/**
- * woo_custom_product_searchform
- *
- * @access      public
- * @since       1.0 
- * @return      void
-*/
 function woo_custom_product_searchform( $form ) {
 	
 	$form = '<form role="search" method="get" class="woocommerce-product-search" id="searchform" action="' . esc_url( home_url( '/'  ) ) . '">
