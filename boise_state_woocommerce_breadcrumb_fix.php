@@ -29,8 +29,8 @@ function woo_custom_product_searchform( $form ) {
 	$form = '<form role="search" method="get" class="woocommerce-product-search" action="' . esc_url( home_url( '/'  ) ) . '">
 		<div>
 			<label class="screen-reader-text" for="s">' . __( 'Search for:', 'woocommerce' ) . '</label>
-			<input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="' . get_option('search_text') . '" />
-			<input type="submit" id="searchsubmit" value="'. esc_attr__( 'Search', 'woocommerce' ) .'" />
+			<input type="text" value="' . get_search_query() . '" name="s" placeholder="' . get_option('search_text') . '" />
+			<input type="submit" value="'. esc_attr__( 'Search', 'woocommerce' ) .'" />
 			<input type="hidden" name="post_type" value="product" />
 		</div>
 	</form>';
